@@ -93,10 +93,20 @@ jobs:
       - name: Check for changes
         id: git-check
         run: |
+          echo "=== Git Status Before Staging ==="
+          git status
+          
           # Don't stage protected files
           git add .github/workflows/*.yml 2>/dev/null || true
           git reset .github/workflows/update-template.yml .github/workflows/update-gitops.yml 2>/dev/null || true
           git add .github/scripts/ 2>/dev/null || true
+          
+          echo "=== Git Status After Staging ==="
+          git status
+          
+          echo "=== Staged Changes ==="
+          git diff --staged --name-only
+          
           git diff --staged --quiet || echo "changes=true" >> $GITHUB_OUTPUT
 
       - name: Commit and push changes
