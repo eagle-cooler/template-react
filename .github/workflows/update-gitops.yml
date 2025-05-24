@@ -17,6 +17,13 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Ensure required directories exist
+        run: |
+          mkdir -p .github/workflows
+          mkdir -p .github/scripts
+          mkdir -p .github/configs
+          echo "Created required directories"
+
       - name: Read template configuration
         id: template-config
         run: |
@@ -30,12 +37,11 @@ jobs:
 
       - name: Update workflow files
         run: |
-          # Create necessary directories
-          mkdir -p .github/workflows
+          # Create temporary directory
           mkdir -p temp_workflows
           
           # Copy existing workflows if they exist
-          if [ -d ".github/workflows" ] && [ "$(ls -A .github/workflows 2>/dev/null)" ]; then
+          if [ "$(ls -A .github/workflows 2>/dev/null)" ]; then
             cp -r .github/workflows/* temp_workflows/ 2>/dev/null || true
           fi
           
@@ -63,12 +69,11 @@ jobs:
 
       - name: Update script files
         run: |
-          # Create necessary directories
-          mkdir -p .github/scripts
+          # Create temporary directory
           mkdir -p temp_scripts
           
           # Copy existing scripts if they exist
-          if [ -d ".github/scripts" ] && [ "$(ls -A .github/scripts 2>/dev/null)" ]; then
+          if [ "$(ls -A .github/scripts 2>/dev/null)" ]; then
             cp -r .github/scripts/* temp_scripts/ 2>/dev/null || true
           fi
           
