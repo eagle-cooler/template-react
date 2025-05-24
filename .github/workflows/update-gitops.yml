@@ -2,6 +2,9 @@ name: Update Template Files
 
 on:
   workflow_call:
+    secrets:
+      GH_TOKEN:
+        required: true
   workflow_dispatch:
 
 jobs:
