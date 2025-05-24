@@ -9,7 +9,7 @@ on:
         type: boolean
         default: false
   schedule:
-    - cron: '0 0 * * *'  # Run at midnight every day
+    - cron: '0 0 */7 * *'
 
 jobs:
   check-schedule:
