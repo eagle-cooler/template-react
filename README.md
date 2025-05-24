@@ -1,3 +1,5 @@
+> for gitops workflows, refer to [template](https://github.com/eagle-cooler/template)
+
 ![](./preview.png)
 
 # React + TypeScript + Vite + Eagle Plugin
