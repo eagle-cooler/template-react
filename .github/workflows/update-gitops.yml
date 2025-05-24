@@ -3,10 +3,6 @@ name: Update Template Files
 on:
   workflow_dispatch:
 
-permissions:
-  contents: write
-  workflows: write
-
 jobs:
   update-template:
     runs-on: ubuntu-latest
@@ -15,6 +11,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -98,4 +95,5 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git commit -m "chore: update template files from source repository"
+          git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}
           git push 
