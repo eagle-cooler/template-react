@@ -3,6 +3,10 @@ name: Update Template Files
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+  workflows: write
+
 jobs:
   update-template:
     runs-on: ubuntu-latest
